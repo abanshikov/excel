@@ -1,0 +1,23 @@
+# ignore all files in the directory:
+/node_modules/*
+/dist/*
+/references/*
+/data/references/*
+/venv/
+.git/
+.cache/
+.idea/
+.vscode/
+__pycache__/
+**/*/__pycache__/
+private.py
+*private*
+
+# add catalog or file
+# !/references/тз/
+
+# ignore all Thumbs.db files in the all directory
+**/Thumbs.db
+
+# ignore all ~*.* files in the all directory
+# \~*
