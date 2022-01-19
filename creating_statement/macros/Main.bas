@@ -8,7 +8,7 @@ Const COL_STATEMENT_WORKER = 13
 Const ROW_STATEMENT_WORKER = 16
 Const COL_STATEMENT_ORDER = 15
 
-Const DATA_SHEET = "По сотрудникам"
+Const DATA_SHEET = "РџРѕ СЃРѕС‚СЂСѓРґРЅРёРєР°Рј"
 Const COL_DATA_ORDER = 1
 Const ROW_DATA_ORDER = 2
 Const COL_DATA_WORKER = 2
@@ -17,7 +17,7 @@ Const COL_DATA_WORKER = 2
 
 Sub Main()
 '
-' Управление переносом данных
+' РЈРїСЂР°РІР»РµРЅРёРµ РїРµСЂРµРЅРѕСЃРѕРј РґР°РЅРЅС‹С…
 '
 
     Dim last_worker_row_statement, last_order_row_data As Integer
@@ -27,26 +27,26 @@ Sub Main()
         manager_name = ThisWorkbook.Name
     End If
     
-    Set Manager = Workbooks(manager_name).Sheets("Управление")
+    Set Manager = Workbooks(manager_name).Sheets("РЈРїСЂР°РІР»РµРЅРёРµ")
     
     If Not isOpenFile(statement_file) Then
-        MsgBox ("Не найден файл " & Chr(34) & "Ведомости" & Chr(34) & Chr(13) & _
-                "Попробуйте повторно выбрать файл.")
-        Manager.Cells(1, 2) = "Файл не выбран"
-        Manager.Cells(1, 2).Style = "Плохой"
+        MsgBox ("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» " & Chr(34) & "Р’РµРґРѕРјРѕСЃС‚Рё" & Chr(34) & Chr(13) & _
+                "РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕРІС‚РѕСЂРЅРѕ РІС‹Р±СЂР°С‚СЊ С„Р°Р№Р».")
+        Manager.Cells(1, 2) = "Р¤Р°Р№Р» РЅРµ РІС‹Р±СЂР°РЅ"
+        Manager.Cells(1, 2).Style = "РџР»РѕС…РѕР№"
         Exit Sub
     End If
 
     If Not isOpenFile(data_file) Then
-        MsgBox ("Не найден файл " & Chr(34) & "Данных для ведомости" & Chr(34) & Chr(13) & _
-                "Попробуйте повторно выбрать файл.")
-        Manager.Cells(2, 2) = "Файл не выбран"
-        Manager.Cells(2, 2).Style = "Плохой"
+        MsgBox ("РќРµ РЅР°Р№РґРµРЅ С„Р°Р№Р» " & Chr(34) & "Р”Р°РЅРЅС‹С… РґР»СЏ РІРµРґРѕРјРѕСЃС‚Рё" & Chr(34) & Chr(13) & _
+                "РџРѕРїСЂРѕР±СѓР№С‚Рµ РїРѕРІС‚РѕСЂРЅРѕ РІС‹Р±СЂР°С‚СЊ С„Р°Р№Р».")
+        Manager.Cells(2, 2) = "Р¤Р°Р№Р» РЅРµ РІС‹Р±СЂР°РЅ"
+        Manager.Cells(2, 2).Style = "РџР»РѕС…РѕР№"
         Exit Sub
     End If
     
-    Manager.Cells(3, 2) = "Идёт перенос файлов..."
-    Manager.Cells(3, 2).Style = "Нейтральный"
+    Manager.Cells(3, 2) = "РРґС‘С‚ РїРµСЂРµРЅРѕСЃ С„Р°Р№Р»РѕРІ..."
+    Manager.Cells(3, 2).Style = "РќРµР№С‚СЂР°Р»СЊРЅС‹Р№"
         
     Application.ScreenUpdating = False
     
@@ -61,22 +61,22 @@ Sub Main()
                      (last_worker_col_data))
         
         Workbooks(manager_name).Activate
-        new_name = "С ДАННЫМИ " + statement_name
+        new_name = "РЎ Р”РђРќРќР«РњР " + statement_name
         full_new_name = statement_path + new_name
         Workbooks(statement_name).SaveAs (full_new_name)
         Workbooks(new_name).Close
         Workbooks(data_name).Close
                 
-        Application.StatusBar = "Данные перенесены в файл: " + full_new_name
-        Manager.Cells(3, 2) = "Данные перенесены и сохранены в файл: " & _
+        Application.StatusBar = "Р”Р°РЅРЅС‹Рµ РїРµСЂРµРЅРµСЃРµРЅС‹ РІ С„Р°Р№Р»: " + full_new_name
+        Manager.Cells(3, 2) = "Р”Р°РЅРЅС‹Рµ РїРµСЂРµРЅРµСЃРµРЅС‹ Рё СЃРѕС…СЂР°РЅРµРЅС‹ РІ С„Р°Р№Р»: " & _
                               Chr(32) & Chr(10) & Chr(34) & new_name & Chr(34)
-        Manager.Cells(3, 2).Style = "Хороший"
+        Manager.Cells(3, 2).Style = "РҐРѕСЂРѕС€РёР№"
         
-        Manager.Cells(1, 2) = "Выберите файл ведомости..."
-        Manager.Cells(1, 2).Style = "Нейтральный"
+        Manager.Cells(1, 2) = "Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РІРµРґРѕРјРѕСЃС‚Рё..."
+        Manager.Cells(1, 2).Style = "РќРµР№С‚СЂР°Р»СЊРЅС‹Р№"
         
-        Manager.Cells(2, 2) = "Выберите файл данных для ведомости..."
-        Manager.Cells(2, 2).Style = "Нейтральный"
+        Manager.Cells(2, 2) = "Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР°РЅРЅС‹С… РґР»СЏ РІРµРґРѕРјРѕСЃС‚Рё..."
+        Manager.Cells(2, 2).Style = "РќРµР№С‚СЂР°Р»СЊРЅС‹Р№"
         
     Application.ScreenUpdating = True
 
@@ -88,30 +88,30 @@ Private Sub addRows(last_worker_row_statement As Integer, _
                     last_worker_col_data As Integer)
                     
 '
-' Добавление строк с данными в ведомость
+' Р”РѕР±Р°РІР»РµРЅРёРµ СЃС‚СЂРѕРє СЃ РґР°РЅРЅС‹РјРё РІ РІРµРґРѕРјРѕСЃС‚СЊ
 '
 Dim flag_copy As Boolean
 Set Statement = Workbooks(statement_name).Sheets(STATEMENT_SHEET)
 Set Data = Workbooks(data_name).Sheets(DATA_SHEET)
 
-' Перебор всех работников из ведомости
+' РџРµСЂРµР±РѕСЂ РІСЃРµС… СЂР°Р±РѕС‚РЅРёРєРѕРІ РёР· РІРµРґРѕРјРѕСЃС‚Рё
 For index_row_statement = last_worker_row_statement _
             To ROW_STATEMENT_WORKER Step -1
     current_worker_statement = Statement.Cells(index_row_statement, _
                                                COL_STATEMENT_WORKER)
-    Application.StatusBar = "Поиск данных для: " & current_worker_statement
+    Application.StatusBar = "РџРѕРёСЃРє РґР°РЅРЅС‹С… РґР»СЏ: " & current_worker_statement
     
-    ' Перебор всех сотрудников из "данных для ведомости"
+    ' РџРµСЂРµР±РѕСЂ РІСЃРµС… СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ РёР· "РґР°РЅРЅС‹С… РґР»СЏ РІРµРґРѕРјРѕСЃС‚Рё"
     For index_col_data = last_worker_col_data To COL_DATA_WORKER Step -1
         flag_copy = False
         current_worker_data = Data.Cells(1, index_col_data)
         If current_worker_statement = current_worker_data Then
-            ' Перебор всех заказов из "данных для ведомости"
+            ' РџРµСЂРµР±РѕСЂ РІСЃРµС… Р·Р°РєР°Р·РѕРІ РёР· "РґР°РЅРЅС‹С… РґР»СЏ РІРµРґРѕРјРѕСЃС‚Рё"
             For index_current_order_data = last_order_row_data _
                     To ROW_DATA_ORDER Step -1:
                 current_order_data = Data.Cells(index_current_order_data, _
                                                 index_col_data)
-                ' При наличии процента заказа перенос данных
+                ' РџСЂРё РЅР°Р»РёС‡РёРё РїСЂРѕС†РµРЅС‚Р° Р·Р°РєР°Р·Р° РїРµСЂРµРЅРѕСЃ РґР°РЅРЅС‹С…
                 If current_order_data Then
                     If flag_copy Then
                         Statement.Rows(index_row_statement).Copy
@@ -132,11 +132,11 @@ For index_row_statement = last_worker_row_statement _
                 End If
             Next index_current_order_data
             Exit For
-        ' Не найдено ни одного совпадения сотрудников
+        ' РќРµ РЅР°Р№РґРµРЅРѕ РЅРё РѕРґРЅРѕРіРѕ СЃРѕРІРїР°РґРµРЅРёСЏ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ
         ElseIf index_col_data = COL_DATA_WORKER Then
-            MsgBox (current_worker_statement & " не найден в файле:" & _
+            MsgBox (current_worker_statement & " РЅРµ РЅР°Р№РґРµРЅ РІ С„Р°Р№Р»Рµ:" & _
                     Chr(13) & Chr(34) & data_name & Chr(34) & Chr(13) & _
-                    "ФИО должны в точности совпадать.")
+                    "Р¤РРћ РґРѕР»Р¶РЅС‹ РІ С‚РѕС‡РЅРѕСЃС‚Рё СЃРѕРІРїР°РґР°С‚СЊ.")
         End If
     Next index_col_data
 Next index_row_statement
@@ -150,7 +150,7 @@ Private Function getLastCol(workbook_name As String, _
                             row_index As Integer, _
                             col_index As Integer) As Integer
 '
-' Получение номера последнего столбца относительно переданной ячейкм
+' РџРѕР»СѓС‡РµРЅРёРµ РЅРѕРјРµСЂР° РїРѕСЃР»РµРґРЅРµРіРѕ СЃС‚РѕР»Р±С†Р° РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РїРµСЂРµРґР°РЅРЅРѕР№ СЏС‡РµР№РєРј
 '
 getLastCol = Workbooks(workbook_name).Sheets(sheet_name). _
                 Cells(row_index, col_index).End(xlToRight).Column
@@ -162,7 +162,7 @@ Private Function getLastRow(workbook_name As String, _
                             row_index As Integer, _
                             col_index As Integer) As Integer
 '
-' Получение номера последней строки относительно переданной ячейкм
+' РџРѕР»СѓС‡РµРЅРёРµ РЅРѕРјРµСЂР° РїРѕСЃР»РµРґРЅРµР№ СЃС‚СЂРѕРєРё РѕС‚РЅРѕСЃРёС‚РµР»СЊРЅРѕ РїРµСЂРµРґР°РЅРЅРѕР№ СЏС‡РµР№РєРј
 '
 getLastRow = Workbooks(workbook_name).Sheets(sheet_name). _
                 Cells(row_index, col_index).End(xlDown).Row
@@ -171,7 +171,7 @@ End Function
 
 Private Function isOpenFile(ByVal filePath As String) As Boolean
 '
-' Проверка существования и открытие файла файла.
+' РџСЂРѕРІРµСЂРєР° СЃСѓС‰РµСЃС‚РІРѕРІР°РЅРёСЏ Рё РѕС‚РєСЂС‹С‚РёРµ С„Р°Р№Р»Р° С„Р°Р№Р»Р°.
 '
     Set fs = CreateObject("Scripting.FileSystemObject")
     If fs.FileExists(filePath) = True Then
@@ -185,16 +185,16 @@ End Function
 
 Private Sub Auto_Open()
 '
-' Действия при открытии файла управления.
+' Р”РµР№СЃС‚РІРёСЏ РїСЂРё РѕС‚РєСЂС‹С‚РёРё С„Р°Р№Р»Р° СѓРїСЂР°РІР»РµРЅРёСЏ.
 '
     manager_name = ThisWorkbook.Name
-    Set Manager = Workbooks(manager_name).Sheets("Управление")
+    Set Manager = Workbooks(manager_name).Sheets("РЈРїСЂР°РІР»РµРЅРёРµ")
     
-    Manager.Cells(1, 2) = "Выберите файл ведомости..."
-    Manager.Cells(1, 2).Style = "Нейтральный"
+    Manager.Cells(1, 2) = "Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РІРµРґРѕРјРѕСЃС‚Рё..."
+    Manager.Cells(1, 2).Style = "РќРµР№С‚СЂР°Р»СЊРЅС‹Р№"
     
-    Manager.Cells(2, 2) = "Выберите файл данных для ведомости..."
-    Manager.Cells(2, 2).Style = "Нейтральный"
+    Manager.Cells(2, 2) = "Р’С‹Р±РµСЂРёС‚Рµ С„Р°Р№Р» РґР°РЅРЅС‹С… РґР»СЏ РІРµРґРѕРјРѕСЃС‚Рё..."
+    Manager.Cells(2, 2).Style = "РќРµР№С‚СЂР°Р»СЊРЅС‹Р№"
     
     Manager.Cells(3, 2) = ""
     Manager.Cells(3, 2).Select

@@ -1,7 +1,7 @@
 Attribute VB_Name = "Settings"
 Sub workbookOpen()
 '
-' Запуск управляющей формы
+' Р—Р°РїСѓСЃРє СѓРїСЂР°РІР»СЏСЋС‰РµР№ С„РѕСЂРјС‹
 '
     For i = 0 To 9
         MainForm.ComboBox1.AddItem CStr(i)
@@ -15,7 +15,7 @@ End Sub
 
 Sub ResetRange()
 '
-' Сброс скрола
+' РЎР±СЂРѕСЃ СЃРєСЂРѕР»Р°
 '
    ActiveSheet.UsedRange
 End Sub
@@ -24,7 +24,7 @@ End Sub
 Sub clearAll()
 Attribute clearAll.VB_ProcData.VB_Invoke_Func = " \n14"
 '
-' Очистка значений и свойств
+' РћС‡РёСЃС‚РєР° Р·РЅР°С‡РµРЅРёР№ Рё СЃРІРѕР№СЃС‚РІ
 '
 Dim lLastRow As Long
 

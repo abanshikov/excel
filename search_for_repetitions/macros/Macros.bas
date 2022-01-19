@@ -1,13 +1,13 @@
 Attribute VB_Name = "Macros"
 Function getLastValue() As Long
-' Определение номера последней непустой стрки
+' РћРїСЂРµРґРµР»РµРЅРёРµ РЅРѕРјРµСЂР° РїРѕСЃР»РµРґРЅРµР№ РЅРµРїСѓСЃС‚РѕР№ СЃС‚СЂРєРё
     getLastValue = Cells(Rows.Count, 1).End(xlUp).Row
 End Function
 
 
 Function checkString(SearchString, SearchChar) As Boolean
 '
-' Определение наличия символа (последовательности символов) в строке
+' РћРїСЂРµРґРµР»РµРЅРёРµ РЅР°Р»РёС‡РёСЏ СЃРёРјРІРѕР»Р° (РїРѕСЃР»РµРґРѕРІР°С‚РµР»СЊРЅРѕСЃС‚Рё СЃРёРјРІРѕР»РѕРІ) РІ СЃС‚СЂРѕРєРµ
 '
 
 Dim position As Integer
@@ -24,7 +24,7 @@ End Function
 
 Function setSearchText() As String
 '
-' Текст фильтра для сравниваемых ячеек
+' РўРµРєСЃС‚ С„РёР»СЊС‚СЂР° РґР»СЏ СЃСЂР°РІРЅРёРІР°РµРјС‹С… СЏС‡РµРµРє
 '
     If MainForm.CheckBox1.Value = True Then
         setSearchText = MainForm.TextBox1.Text
@@ -37,7 +37,7 @@ End Function
 
 Sub SearchDoublesRow()
 '
-' Поиск номеров строк с повторами в столбце А
+' РџРѕРёСЃРє РЅРѕРјРµСЂРѕРІ СЃС‚СЂРѕРє СЃ РїРѕРІС‚РѕСЂР°РјРё РІ СЃС‚РѕР»Р±С†Рµ Рђ
 '
 Dim i, j As Integer
 Dim lLastRow As Long
@@ -51,7 +51,7 @@ Application.ScreenUpdating = False
             For j = i + 1 To lLastRow
                 sSearchAreaValue = Cells(j, 1)
                 If sDesiredValue = sSearchAreaValue Then
-                    Cells(j, 2) = "да"
+                    Cells(j, 2) = "РґР°"
                     Cells(j, 3) = "# " + CStr(i)
                   
                     Dim k As Integer
@@ -61,7 +61,7 @@ Application.ScreenUpdating = False
                 End If
             Next j
         End If
-        Application.StatusBar = "Проверено: " & CStr(i) & " из " & CStr(lLastRow) & " строк"
+        Application.StatusBar = "РџСЂРѕРІРµСЂРµРЅРѕ: " & CStr(i) & " РёР· " & CStr(lLastRow) & " СЃС‚СЂРѕРє"
     Next i
 
 Application.StatusBar = False
@@ -72,7 +72,7 @@ End Sub
 
 Sub ShowDoubl()
 '
-' Отображение повторяющихся строк
+' РћС‚РѕР±СЂР°Р¶РµРЅРёРµ РїРѕРІС‚РѕСЂСЏСЋС‰РёС…СЃСЏ СЃС‚СЂРѕРє
 '
     SearchDoublesRow
 End Sub
@@ -80,7 +80,7 @@ End Sub
 
 Sub delDoubl()
 '
-' Удаление повторяющихся строк
+' РЈРґР°Р»РµРЅРёРµ РїРѕРІС‚РѕСЂСЏСЋС‰РёС…СЃСЏ СЃС‚СЂРѕРє
 '
 Dim i, j, k As Integer
 SearchDoublesRow
@@ -90,9 +90,9 @@ j = 0
 Application.ScreenUpdating = False
 
     Do While i > 1
-        If Cells(i, 2) = "да" Then
+        If Cells(i, 2) = "РґР°" Then
         
-            ' Проверка и, при необходимости, удаление следующий за найденной строк
+            ' РџСЂРѕРІРµСЂРєР° Рё, РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё, СѓРґР°Р»РµРЅРёРµ СЃР»РµРґСѓСЋС‰РёР№ Р·Р° РЅР°Р№РґРµРЅРЅРѕР№ СЃС‚СЂРѕРє
             If MainForm.ComboBox2.Value <> 0 Then
                 For k = 1 To MainForm.ComboBox2.Value
                     Cells(i + k, 2).Select
@@ -103,7 +103,7 @@ Application.ScreenUpdating = False
             Cells(i, 2).Select
             Selection.EntireRow.Delete
             
-            ' Проверка и, при необходимости, удаление следующий за найденной строк
+            ' РџСЂРѕРІРµСЂРєР° Рё, РїСЂРё РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё, СѓРґР°Р»РµРЅРёРµ СЃР»РµРґСѓСЋС‰РёР№ Р·Р° РЅР°Р№РґРµРЅРЅРѕР№ СЃС‚СЂРѕРє
             If MainForm.ComboBox1.Value <> 0 Then
                 For k = 1 To MainForm.ComboBox1.Value
                     Cells(i - k, 2).Select
@@ -114,11 +114,11 @@ Application.ScreenUpdating = False
             j = j + 1
         End If
         i = i - 1
-        Application.StatusBar = "Удаляется строка: " & CStr(i)
+        Application.StatusBar = "РЈРґР°Р»СЏРµС‚СЃСЏ СЃС‚СЂРѕРєР°: " & CStr(i)
     Loop
 
 Application.StatusBar = False
 Application.ScreenUpdating = True
-MsgBox ("Удалено " + CStr(j) + " строк")
+MsgBox ("РЈРґР°Р»РµРЅРѕ " + CStr(j) + " СЃС‚СЂРѕРє")
 
 End Sub

@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} MainForm 
-   Caption         =   "Управление"
+   Caption         =   "РЈРїСЂР°РІР»РµРЅРёРµ"
    ClientHeight    =   2325
    ClientLeft      =   45
    ClientTop       =   375
@@ -16,7 +16,7 @@ Attribute VB_Exposed = False
 
 Private Sub CheckBox1_Click()
 '
-' Выбор необходимости поиска символов в строке
+' Р’С‹Р±РѕСЂ РЅРµРѕР±С…РѕРґРёРјРѕСЃС‚Рё РїРѕРёСЃРєР° СЃРёРјРІРѕР»РѕРІ РІ СЃС‚СЂРѕРєРµ
 '
     If MainForm.CheckBox1.Value = True Then
         MainForm.TextBox1.Enabled = True
@@ -29,7 +29,7 @@ End Sub
 
 Private Sub CommandButton1_Click()
 '
-' Поиск повторов
+' РџРѕРёСЃРє РїРѕРІС‚РѕСЂРѕРІ
 '
     Macros.ShowDoubl
     Unload MainForm
@@ -37,7 +37,7 @@ End Sub
 
 Private Sub CommandButton2_Click()
 '
-' Удаление повторов
+' РЈРґР°Р»РµРЅРёРµ РїРѕРІС‚РѕСЂРѕРІ
 '
     Macros.delDoubl
     Unload MainForm
@@ -45,7 +45,7 @@ End Sub
 
 Private Sub CommandButton3_Click()
 '
-' Очистка таблицы
+' РћС‡РёСЃС‚РєР° С‚Р°Р±Р»РёС†С‹
 '
     Settings.clearAll
     Unload MainForm
@@ -53,7 +53,7 @@ End Sub
 
 Private Sub CommandButton4_Click()
 '
-' Закрытие окна формы
+' Р—Р°РєСЂС‹С‚РёРµ РѕРєРЅР° С„РѕСЂРјС‹
 '
     Unload MainForm
 End Sub
